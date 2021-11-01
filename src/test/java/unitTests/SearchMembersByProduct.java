@@ -310,7 +310,7 @@ public class SearchMembersByProduct extends base{
 //						.log().body()
 						.assertThat().statusCode(500)
 						.time(lessThan(60L),TimeUnit.SECONDS)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 	@Test (testName="Search Parameter Null",description="PBI:139726")

@@ -16,7 +16,7 @@ public class CancelAppointmentByEmployee extends base {
 	/* ** Additional test cases **
 	 * 1. Cancel fees exist - currently fee not in response,
 	 *  need a way to validate fee has been charged;
-	 *  could wait for a call that has member’s balance,
+	 *  could wait for a call that has members balance,
 	 *  then check balance before and after fee is charged
 	*/
 	/*

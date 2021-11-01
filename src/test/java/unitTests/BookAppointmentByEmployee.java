@@ -1,17 +1,13 @@
 package unitTests;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
+
 import java.util.concurrent.TimeUnit;
 
-import static org.hamcrest.Matchers.empty;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -293,7 +289,7 @@ public class BookAppointmentByEmployee extends base {
 //				.log().body()
 			.assertThat()
 			.statusCode(500)
-			.body("Message", equalTo("Internal server error - Item with ID "+itemId+" is not a valid bookable appointment item."));
+			.body("Message", containsString("Item with ID "+itemId+" is not a valid bookable appointment item."));
 	}
 	
 	@Test (testName="Appointment Not Found",description="PBI:146227")

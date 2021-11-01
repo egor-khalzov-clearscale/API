@@ -81,7 +81,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					}	
 			}
 			else{
-				Assert.assertTrue(false); //failing test because isEnrolled() == true
+				Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 			}
 	}
 
@@ -129,7 +129,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					}	
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	}
 	
@@ -175,7 +175,7 @@ public class EnrollMemberInClassOnAccount extends base {
 						ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 						}
 		} else {
-			Assert.assertTrue(false); // failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); // failing test because isEnrolled() == true
 		}
 	}
 	
@@ -222,7 +222,7 @@ public class EnrollMemberInClassOnAccount extends base {
 							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 							}
 		} else {
-			Assert.assertTrue(false); // failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); // failing test because isEnrolled() == true
 		}
 	}
 	
@@ -269,7 +269,7 @@ public class EnrollMemberInClassOnAccount extends base {
 							ReusableMethods.deleteInvoice(companyId, enrollmentId, invoiceId, customerId);
 						}
 		} else {
-			Assert.assertTrue(false); // failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); // failing test because isEnrolled() == true
 		}
 	}
 	

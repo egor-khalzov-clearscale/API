@@ -701,8 +701,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 	//			.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
-				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
-				
+					.body("Message", startsWith("InvoiceError - "))
+					.body("Message",contains("The creator of this fault did not specify a Reason."));
 	}	
 	
 	

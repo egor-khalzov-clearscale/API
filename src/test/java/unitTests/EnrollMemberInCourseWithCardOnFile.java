@@ -1,21 +1,18 @@
 package unitTests;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import payloads.ClassCoursePL;
 import resources.ReusableMethods;
 import resources.base;
-import static org.hamcrest.Matchers.lessThan;
+
 import java.util.concurrent.TimeUnit;
 
 public class EnrollMemberInCourseWithCardOnFile extends base {
@@ -84,7 +81,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						}
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	}
 	
@@ -125,7 +122,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						}	
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	}
 	
@@ -166,7 +163,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						}	
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	}
 
@@ -214,7 +211,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 						}	
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	} 
 	
@@ -471,7 +468,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 //						.log().body()
 						// this returns "Sequence contains no elements" because there is no card on file
 						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 }

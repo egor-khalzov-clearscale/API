@@ -69,8 +69,7 @@ public class GetAllAvailableClassesByMember extends base {
 						.body("Result.ServiceVisitId", not(empty()))
 						.body("Result.PunchesRequired", not(empty()))
 						.body("Result.PunchesRemaining", not(empty()))
-						.body("Result.PackageName", not(empty()))
-						;
+						.body("Result.PackageName", not(empty()));
 
 	}
 	

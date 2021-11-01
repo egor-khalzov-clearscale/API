@@ -15,13 +15,13 @@
 			<class name="unitTests.CreateMemberNotes" />
 			<class name="unitTests.CSIPayGateway" />
 			<class name="unitTests.EnrollMemberInClassOnAccount" />
-			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
+			<class name="unitTests.EnrollMemberInCourseOnAccount" />
 			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
 			<class name="unitTests.EnrollMemberInCourseWithCardOnFile" />
 			<class name="unitTests.EnrollMemberInClassWithNewCreditCard" />
-			<class name="unitTests.EnrollMemberInCourseWithNewCreditCard" />	
+			<class name="unitTests.EnrollMemberInCourseWithNewCreditCard" />
 			<class name="unitTests.EnrollMemberInClassWithPunchcard" />
-			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
+			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetAccountBalanceDetailsByMember" />
@@ -54,8 +54,8 @@
 			<class name="unitTests.GetFieldsForMemberCreationByMember" />
 			<class name="unitTests.GetFieldsForProspectCreationByEmployee" />
 			<class name="unitTests.GetMember" />
-			<class name="unitTests.GetMemberActions" />	
-			<class name="unitTests.GetMemberToken" />		
+			<class name="unitTests.GetMemberActions" />
+			<class name="unitTests.GetMemberToken" />
 			<class name="unitTests.GetMembersWithOutstandingInvoices" />
 			<class name="unitTests.GetMembersWithPastDueBalances" />
 			<class name="unitTests.GetNextMemberId" />
@@ -80,7 +80,7 @@
 			<class name="unitTests.TakePaymentWithCardOnFileForMember" />
 			<class name="unitTests.UpdatePersonalInformation" />
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
-			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
+			<class name="unitTests.VerifyCourseEnrollmentCapability" />
 			<class name="unitTests.VerifyPackagePurchaseCapability" />
 			<!-- class name="unitTests.CLASSNAME">
 				<methods>

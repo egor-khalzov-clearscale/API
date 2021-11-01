@@ -6,7 +6,7 @@
 			<class name="utilities._preTestAnnouncement" />
 			<class name="functionalTests.ScheduleAppointment" />
 			<class name="unitTests.AddCardOnFileByMember" />
-			<class name="unitTests.AddStoredBankAccount" />			
+			<class name="unitTests.AddStoredBankAccount" />
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
 			<class name="unitTests.BookAppointmentByEmployee" />
 			<class name="unitTests.BookAppointmentByMember" />
@@ -16,13 +16,13 @@
 			<class name="unitTests.CreateMemberNotes" />
 			<class name="unitTests.CSIPayGateway" />
 			<class name="unitTests.EnrollMemberInClassOnAccount" />
-			<class name="unitTests.EnrollMemberInCourseOnAccount" />	
+			<class name="unitTests.EnrollMemberInCourseOnAccount" />
 			<class name="unitTests.EnrollMemberInClassWithCardOnFile" />
 			<class name="unitTests.EnrollMemberInCourseWithCardOnFile" />
 			<class name="unitTests.EnrollMemberInClassWithNewCreditCard" />
-			<class name="unitTests.EnrollMemberInCourseWithNewCreditCard" />	
+			<class name="unitTests.EnrollMemberInCourseWithNewCreditCard" />
 			<class name="unitTests.EnrollMemberInClassWithPunchcard" />
-			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />		
+			<class name="unitTests.EnrollMemberInCourseWithPunchcard" />
 			<class name="unitTests.EnrollMemberInClassWithRecurringDues" />
 			<class name="unitTests.EnrollMemberInCourseWithRecurringDues" />
 			<class name="unitTests.GetAccountBalanceDetailsByMember" />
@@ -82,9 +82,9 @@
 			<class name="unitTests.TakePaymentWithNewCreditCard" />
 			<class name="unitTests.TakePaymentWithCardOnFileForMember" />
 			<class name="unitTests.UpdatePersonalInformation" />
-			<class name="unitTests.UpdateStoredBankAccount" />	
+			<class name="unitTests.UpdateStoredBankAccount" />
 			<class name="unitTests.VerifyClassEnrollmentCapability" />
-			<class name="unitTests.VerifyCourseEnrollmentCapability" />	
+			<class name="unitTests.VerifyCourseEnrollmentCapability" />
 			<class name="unitTests.VerifyPackagePurchaseCapability" />
 			<!-- class name="unitTests.CLASSNAME">
 				<methods>

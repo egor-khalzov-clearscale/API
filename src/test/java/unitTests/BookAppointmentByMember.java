@@ -1,15 +1,11 @@
 package unitTests;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.lessThan;
+
 import java.util.concurrent.TimeUnit;
 
 import io.restassured.RestAssured;
@@ -313,7 +309,7 @@ public class BookAppointmentByMember extends base {
 //						.log().body()
 						.assertThat().statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
-				.body("Message", equalTo("Internal server error - Item with ID "+itemId+" is not a valid bookable appointment item."));
+				.body("Message", containsString("Item with ID "+itemId+" is not a valid bookable appointment item."));
 	}
 	
 	@Test (testName="Not Enough Punches",description="PBI:127168")

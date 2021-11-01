@@ -365,7 +365,6 @@ public class TakePaymentWithNewCreditCard extends base {
 				String stateProvince = "";
 
 			given()
-//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -376,7 +375,6 @@ public class TakePaymentWithNewCreditCard extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))

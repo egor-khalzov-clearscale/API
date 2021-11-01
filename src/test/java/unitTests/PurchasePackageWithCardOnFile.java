@@ -377,7 +377,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 	@Test (testName="Quantity Zero",description="PBI:143542")
@@ -461,7 +461,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 	@Test (testName="Collections Member",description="PBI:143542", enabled = true)
@@ -545,7 +545,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));				
+				.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 	@Test (testName="Credit Limit Exceeded",description="PBI:143542", enabled = true)
@@ -573,7 +573,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.statusCode(500)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(500))
-				.body("Message", equalTo("Internal server error - Sequence contains no elements"));			
+				.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 	@Test (testName="Credit Limit Not Exceeded",description="PBI:143542")
@@ -714,8 +714,8 @@ public class PurchasePackageWithCardOnFile extends base{
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(400))
 //				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
-				.body("Message", equalTo("InvoiceError - The creator of this fault did not specify a Reason."));
-	}	
+					.body("Message", startsWith("InvoiceError - "))
+					.body("Message",contains("The creator of this fault did not specify a Reason."));}
 	
 	
 	

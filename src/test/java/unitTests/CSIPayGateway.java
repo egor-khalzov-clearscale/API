@@ -201,7 +201,7 @@ public class CSIPayGateway extends base {
 						}
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	}
 

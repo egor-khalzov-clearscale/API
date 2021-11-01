@@ -379,7 +379,7 @@ public class Vita_SetProjectVitaConfiguration extends base {
 						"}")
 				.post("api/v3/businessintelligence/setbusinessintelligenceconfiguration")
 			.then()
-//			    .log().all()
+			    .log().all()
 			    .time(lessThan(60L),TimeUnit.SECONDS)
 				.statusCode(400)
 				.statusLine("HTTP/1.1 400 Bad Request")

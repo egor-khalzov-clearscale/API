@@ -96,7 +96,7 @@ public class ReusableMethods extends base {
 				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("----------------------------------");
 				loopCount = 0;
-				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+				Assert.fail("failing test because loopCount exceeded 5"); //failing test because loopCount exceeded 5
 			}
 			loopCount = 0;
 //			return;
@@ -148,7 +148,7 @@ public class ReusableMethods extends base {
 				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("[ERROR]------------------------------------------------");
 				loopCount = 0;
-				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+				Assert.fail("failing test because loopCount exceeded 5"); //failing test because loopCount exceeded 5
 			}
 			loopCount = 0;
 //			return;
@@ -199,7 +199,7 @@ public class ReusableMethods extends base {
 				System.out.println("[ERROR] loopCount: "+loopCount);
 				System.out.println("[ERROR]------------------------------------------------");
 				loopCount = 0;
-				Assert.assertTrue(false); //failing test because loopCount exceeded 5
+				Assert.fail("failing test because loopCount exceeded 5"); //failing test because loopCount exceeded 5
 //				return;
 			}
 			loopCount = 0;

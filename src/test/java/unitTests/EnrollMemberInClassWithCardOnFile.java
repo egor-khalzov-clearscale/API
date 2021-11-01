@@ -1,15 +1,11 @@
 package unitTests;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.lessThan;
 
 import java.util.concurrent.TimeUnit;
 
@@ -88,7 +84,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						}	
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 	}
 	
@@ -138,7 +134,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						}
 	}
 	else{
-		Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 	}
 			}
 	
@@ -196,7 +192,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						}	
 				}
 				else{
-					Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 				}
 			}
 	
@@ -253,7 +249,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 						}	
 		}
 		else{
-			Assert.assertTrue(false); //failing test because isEnrolled() == true
+					Assert.fail("failing test because isEnrolled() == true"); //failing test because isEnrolled() == true
 		}
 	} 
 	
@@ -545,7 +541,7 @@ public class EnrollMemberInClassWithCardOnFile extends base {
 //						.log().body()
 						// this returns "Sequence contains no elements" because there is no card on file
 						.assertThat().statusCode(500)
-						.body("Message", equalTo("Internal server error - Sequence contains no elements"));
+						.body("Message", containsString("Sequence contains no elements"));
 	}
 	
 }
