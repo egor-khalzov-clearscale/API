@@ -26,7 +26,7 @@ public class AddStoredBankAccount extends base {
 	static String bankAccountType;
 	static String isBusinessAccount;
 	static String setAsHouseAccount;
-	static String agreementNumbersToUpdateToThisFOP;
+	static String updateActiveAgreements;
 
 	@BeforeClass
 	public void getData() {
@@ -45,13 +45,11 @@ public class AddStoredBankAccount extends base {
 		bankAccountType = "Checking";
 		isBusinessAccount = "false";
 		setAsHouseAccount = "false";
-		agreementNumbersToUpdateToThisFOP = prop.getProperty("agreementToAddUpdate");
+		updateActiveAgreements = "false";
 	}
 	
 	@Test (testName="Add Checking Account", description="PBI:180170")
 	public void addCheckingAccount() {
-		
-		//String customerId = prop.getProperty("MultipleAgreementWithSingleBankAccountId");
 
 		Response res = 
 				
@@ -63,7 +61,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+					.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -98,7 +96,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -117,8 +115,10 @@ public class AddStoredBankAccount extends base {
 					Assert.assertTrue(storedAccountsResponse.getString("Results.BankAccountType.CurrentValue").contains(bankAccountType));
 	}
 	
-	@Test (testName="Add Account With Agreement", description="PBI:180170")
-	public void addAccountWithAgreement() {
+	@Test (testName="Add Account Update Active Agreements", description="PBI:180170")
+	public void addAccountUpdateActiveAgreements() {
+		
+		String updateActiveAgreements = "true";
 
 		Response res = 
 				
@@ -130,7 +130,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount,agreementNumbersToUpdateToThisFOP))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -160,7 +160,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -194,7 +194,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -228,7 +228,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -257,7 +257,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -286,7 +286,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()
@@ -315,7 +315,7 @@ public class AddStoredBankAccount extends base {
 					.header("X-ClubId", clubId)
 					.header("Content-Type", "application/json")
 				.when()
-					.body(FinancialPL.addStoredBankAccountsWithoutAgreement(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount))
+				.body(FinancialPL.addStoredBankAccounts(customerId,bankAccountNumber,bankRoutingNumber,accountHolderName,bankAccountType,isBusinessAccount,setAsHouseAccount, updateActiveAgreements))
 					.post("/api/v3/financial/addstoredbankaccount")
 				.then()
 //					.log().body()

@@ -3,16 +3,10 @@
 <suite name="CompeteAPI v3">
 		<test thread-count="5" name="API - Continuous Integration">
 		<classes>
-			<class name="utilities._preTestAnnouncement" />		
 			<class name="unitTests.AuthenticateMemberByUserCredentials" />
 			<class name="unitTests.GetActiveClubs" />
 			<class name="unitTests.GetEmployees" />
-			<class name="unitTests.SearchMembers" />
-			<!-- class name="unitTests.CLASSNAME">
-				<methods>
-				<exclude name="METHODNAME"/>
-				</methods>
-			</class-->			
+			<class name="unitTests.SearchMembers" />		
 		</classes>
 	</test>
 </suite>
