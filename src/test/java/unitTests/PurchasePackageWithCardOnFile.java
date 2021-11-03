@@ -715,7 +715,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body("Status", equalTo(400))
 //				.body("Message", equalTo("InvoiceError - Missing quantity configuration"));
 					.body("Message", startsWith("InvoiceError - "))
-					.body("Message",contains("The creator of this fault did not specify a Reason."));}
+					.body("Message",containsString("The creator of this fault did not specify a Reason."));}
 	
 	
 	

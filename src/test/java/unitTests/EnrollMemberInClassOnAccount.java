@@ -142,9 +142,9 @@ public class EnrollMemberInClassOnAccount extends base {
 				String classId = prop.getProperty("standbyClId");
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
-				Boolean enrollCustomerAsStandby = true;
+				boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (!ReusableMethods.isEnrolled(customerId)) {
 
 			Response res =	given()
 				.header("accept", "application/json")

@@ -200,7 +200,7 @@ public class ModifyCardOnFileByMember extends base {
 				Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);				
 				JsonPath js = ReusableMethods.rawToJson(res);
 				Assert.assertEquals(js.getString("Result[0].IsHouseAccount"), setAsHouseAccount);
-				Assert.assertEquals(js.getBoolean("Result[1].IsHouseAccount"), false);
+		Assert.assertFalse(js.getBoolean("Result[1].IsHouseAccount"));
 	}
 	
 	@Test (testName="Set Card 2 As House Account", description="PBI:164154", priority = 2, enabled = true)

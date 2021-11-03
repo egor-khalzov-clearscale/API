@@ -1,13 +1,11 @@
 package unitTests;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.equalTo;
 
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -177,6 +175,6 @@ public class GetPackagesForPurchaseByClub extends base {
 			.then()
 //			    .log().body()
 				.assertThat().statusCode(500)
-				.body("Message",contains("Internal server error - Customer Not Found"));
+				.body("Message",containsString("Internal server error - Customer Not Found"));
 			}
 }
