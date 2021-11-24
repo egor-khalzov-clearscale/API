@@ -216,19 +216,13 @@ public class ReusableMethods extends base {
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
 				.header("X-CompanyId", prop.getProperty("X-CompanyId"))
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
+				.log().all()
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/"+sDateTimeNoOffset+"/2200-01-01")
 						.then()
 						.extract().response();
-				
-				if(res.statusCode() != 404)
-				{
-					return true;
-				}
-				else
-					{
-						return false;
-					}
+
+		return res.statusCode() != 404;
 	}
 	
 	public static boolean hasAppointment(String customerId)

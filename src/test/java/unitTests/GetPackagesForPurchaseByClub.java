@@ -14,7 +14,7 @@ import resources.ReusableMethods;
 import resources.base;
 
 public class GetPackagesForPurchaseByClub extends base {
-	
+
 	static String aPIKey;
 	static String companyId;
 	static String clubId;
@@ -175,6 +175,6 @@ public class GetPackagesForPurchaseByClub extends base {
 			.then()
 //			    .log().body()
 				.assertThat().statusCode(500)
-				.body("Message",containsString("Internal server error - Customer Not Found"));
+				.body("Message",containsString("Customer Not Found"));
 			}
 }

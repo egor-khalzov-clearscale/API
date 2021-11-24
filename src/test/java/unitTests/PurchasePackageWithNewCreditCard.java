@@ -674,10 +674,8 @@ public class PurchasePackageWithNewCreditCard extends base{
 				.body("Status", equalTo(400))
 				.body("Message", equalTo("ProductPriceChanged"));			
 	}
-	
 	@Test (testName="Package Quantity Limit Exceeded",description="PBI:143541")
 	public void packageQuantityLimitExceeded() {
- 
 				String customerId = prop.getProperty("availableId");
 				String itemId = prop.getProperty("limit10PId");
 				int quantity = 15;

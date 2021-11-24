@@ -42,9 +42,9 @@ public class ResponseErrorLogger {
         var collect = ar.stream()
                 .map(d -> d.setTestThrowable(result.getThrowable()))
                 .collect(Collectors.toMap(TestData::getFullName, List::of, (BinaryOperator<List<TestData>>) ListUtils::union));
-        if (result.getStatus() == ITestResult.FAILURE) {
+//        if (result.getStatus() == ITestResult.FAILURE) {
             collect.forEach(this::saveErrorData);
-        }
+//        }
         collect.forEach((k, v) -> buildCSV(v, result.getStatus()));
         ar.clear();
     }
@@ -80,7 +80,6 @@ public class ResponseErrorLogger {
         } else data.error = getErrorReasonXml(ReusableMethods.rawToXML(data.response));
         System.out.println("Test " + data.getFullName() + " has an error:\n" + data.error);
     }
-
     private String getErrorReasonJson(JsonPath json) {
         var errorMsg = json.getString("Message");
         if (errorMsg == null) return "unsorted";
