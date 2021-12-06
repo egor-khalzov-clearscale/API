@@ -53,7 +53,7 @@ public class GetBillingDeclinesHistories extends base {
 			.when()
 				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
 			.then()
-//			    .log().body()
+			    .log().body()
 				.statusCode(200)
 				.statusLine("HTTP/1.1 200 OK")
 				.extract().response();
@@ -74,46 +74,7 @@ public class GetBillingDeclinesHistories extends base {
 				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].LateFeeAppliedAmount"));
 				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].Attendant"));
 	}
-	
-	@Test (testName="Corrections History Found",description="PBI:150328")
-	public void correctionsHistoryFound() {
-		
-				String companyId = "101";
-				String startDate = ReusableDates.getCurrentDateMinusXYears(10);
-				String returnsType = "Corrections";
-		
-		Response res = 	
-				
-			given()
-//				.log().all()
-				.header("accept", "application/json")
-				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", companyId)
-				.header("X-ClubId", clubId)
-			.when()
-				.get("/api/v3/reports/getbillingdeclineshistory?StartDate="+startDate+"&EndDate="+endDate+"&ReturnsType="+returnsType+"&ReturnsMinimumCount="+minimumDeclinesCount+"")
-			.then()
-//			    .log().all()
-				.statusCode(200)
-				.statusLine("HTTP/1.1 200 OK")
-				.extract().response();
-		
-				JsonPath js = ReusableMethods.rawToJson(res);		
 
-				Assert.assertEquals(js.getInt("Status"), 200);
-				
-				Assert.assertNotNull(js.getString("Result[0].CustomerId"));
-				Assert.assertNotNull(js.getString("Result[0].CustomerBarcodeId"));
-				Assert.assertNotNull(js.getString("Result[0].CustomerName"));
-				Assert.assertNotNull(js.getString("Result[0].ClubName"));
-				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].ReturnDate"));
-				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].Amount"));
-				Assert.assertTrue(js.getString("Result[0].BillingDeclinesForCustomer[0]").contains("ReturnDescription"));
-				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].ReturnCode"));
-				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].DisplayCode"));
-				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].LateFeeAppliedAmount"));
-				Assert.assertNotNull(js.getString("Result[0].BillingDeclinesForCustomer[0].Attendant"));
-	}
 
 	@Test (testName="Declines History Found",description="PBI:150328")
 	public void declinesHistoryFound() {

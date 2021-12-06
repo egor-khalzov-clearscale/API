@@ -34,9 +34,8 @@ public class GetAppointmentsByBook extends base{
 
 		String resourceTypeId = prop.getProperty("demoBookId");
 			int r = Integer.parseInt(resourceTypeId);
-		//String sDateTimeNoOffset = ReusableDates.getCurrentDateMinusOneYear();
-			String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		String eDateTimeNoOffset = ReusableDates.getCurrentDatePlusOneMonth();
+		String sDateTimeNoOffset = "2021-12-01";
+		String eDateTimeNoOffset = "2025-01-01";
 
 				given()
 //						.log().all()
@@ -80,8 +79,8 @@ public class GetAppointmentsByBook extends base{
 	public void pastAppointmentsFound() {
 
 				String resourceTypeId = prop.getProperty("pTBook3Id");
-				String sDateTimeNoOffset = prop.getProperty("pastAppointmentSDateTime");
-				String eDateTimeNoOffset = prop.getProperty("pastAppointmentEDateTime");
+				String sDateTimeNoOffset = "2000-12-01";
+				String eDateTimeNoOffset = "2021-01-01";
 				
 
 				given()

@@ -39,7 +39,7 @@ public class UpdateStoredBankAccount extends base {
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
-		accountId = "1";
+		accountId = "3";
 		customerId = prop.getProperty("changeFOPId");
 		bankRoutingNumber = prop.getProperty("routingNumber");
 		bankAccountNumber = prop.getProperty("accountNumber");
@@ -89,6 +89,7 @@ public class UpdateStoredBankAccount extends base {
 	public void updateSavingsAccount() {
 		
 		String bankAccountType = "Savings";
+		String accountId = "1";
 
 		Response res = 
 				
@@ -313,9 +314,9 @@ public class UpdateStoredBankAccount extends base {
 	}
 	
 	@Test (testName="Update Agreements to AccountId 2", description="PBI:180171")
-	public void updateAgreementsToAccountId2() {
+	public void updateAgreementsToAccountId3() {
 		
-		String accountId = "2";
+		String accountId = "3";
 		String updateActiveAgreements = "true";
 		
 

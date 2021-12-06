@@ -50,8 +50,8 @@ public class ModifyCardOnFileByMember extends base {
 		companyId = prop.getProperty("X-CompanyId");
 		clubId = prop.getProperty("X-Club1Id");
 		
-		 accountId = "1";
-		 customerId = prop.getProperty("changeCCMember1Id");
+		 accountId = "2";
+		 customerId = prop.getProperty("changeFOPId");
 			
 		addressIsSameAsMemberAddress = "false";
 		useInPos = "true";
@@ -100,10 +100,12 @@ public class ModifyCardOnFileByMember extends base {
 	}
 	
 	@Test (testName="Modify All Fields", description="PBI:164154", priority = 1, dataProvider="getDataProvider")
+
 	public void modifyAllFields(String cardNumber, String cardType, String expirationMonth, String expirationYear, String cardHolderName, String addressLine1, String addressLine2, String city, String stateProvince, String postalCode) {
+	
 
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("Content-Type", "application/json")
 				.header("X-Api-Key", aPIKey)
@@ -113,7 +115,7 @@ public class ModifyCardOnFileByMember extends base {
 				.body(MemberPL.modifyCardOnFileByMemberAllFields(accountId,customerId,cardNumber,expirationMonth,expirationYear,cardHolderName,addressIsSameAsMemberAddress,addressLine1,addressLine2,city,stateProvince,postalCode,useInPos,setAsHouseAccount))
 				.post("/api/v3/member/modifycardonfilebymember")
 			.then()
-//				.log().all()
+				.log().all()
 				.assertThat().statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS);
 			
@@ -133,8 +135,6 @@ public class ModifyCardOnFileByMember extends base {
 				Assert.assertEquals(js.getString("Result[0].Address.StateProvince"),stateProvince);
 				Assert.assertEquals(js.getString("Result[0].CardType"),cardType);
 				Assert.assertEquals(js.getString("Result[0].IsHouseAccount"),setAsHouseAccount);
-//				Assert.assertEquals(js.getString("Result[0].IsSameAsMemberAddress"),addressIsSameAsMemberAddress);
-				 // researching, coming back as null
 	}
 	
 	@Test (testName="Address Is Same As Member Address", description="PBI:164154")
