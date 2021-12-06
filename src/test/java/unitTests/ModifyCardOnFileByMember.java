@@ -488,7 +488,7 @@ public class ModifyCardOnFileByMember extends base {
 			
 				JsonPath js = ReusableMethods.rawToJson(res);
 
-				Assert.assertTrue(cardNumber.contains(js.getString("Result[0].TruncatedAccountNumber")));
+				Assert.assertTrue(cardNumber.contains(js.getString("Result[1].TruncatedAccountNumber")));
 	}
 	
 	@Test (testName="Modify Address Line 1", description="PBI:164154")
@@ -523,7 +523,7 @@ public class ModifyCardOnFileByMember extends base {
 			
 				JsonPath js = ReusableMethods.rawToJson(res);
 
-				Assert.assertTrue(js.getString("Result[0].Address.AddressLine1").equals(addressLine1));
+				Assert.assertTrue(js.getString("Result[1].Address.AddressLine1").equals(addressLine1));
 	}
 	
 	@Test (testName="Modify Address Line 2", description="PBI:164154")
@@ -558,7 +558,7 @@ public class ModifyCardOnFileByMember extends base {
 			
 				JsonPath js = ReusableMethods.rawToJson(res);
 
-				Assert.assertTrue(js.getString("Result[0].Address.AddressLine2").equals(addressLine2));
+				Assert.assertTrue(js.getString("Result[1].Address.AddressLine2").equals(addressLine2));
 	}
 	
 	@Test (testName="Modify City", description="PBI:164154")
@@ -593,7 +593,7 @@ public class ModifyCardOnFileByMember extends base {
 			
 				JsonPath js = ReusableMethods.rawToJson(res);
 
-				Assert.assertTrue(js.getString("Result[0].Address.City").equals(city));
+				Assert.assertTrue(js.getString("Result[1].Address.City").equals(city));
 	}
 	
 	@Test (testName="Modify StateProvince", description="PBI:164154")
@@ -628,10 +628,10 @@ public class ModifyCardOnFileByMember extends base {
 			
 				JsonPath js = ReusableMethods.rawToJson(res);
 
-				Assert.assertTrue(js.getString("Result[0].Address.StateProvince").equals(stateProvince));
+				Assert.assertTrue(js.getString("Result[1].Address.StateProvince").equals(stateProvince));
 	}
 	
-	@Test (testName="No Change To Existing Address Line 1", description="PBI:164154")
+	@Test (testName="No Change To Existing Address Line 1", description="PBI:164154", priority = Integer.MIN_VALUE)
 	public void noChangeToExistingAddressLine1() {
 		
 			Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
@@ -709,25 +709,3 @@ public class ModifyCardOnFileByMember extends base {
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

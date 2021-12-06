@@ -80,10 +80,10 @@ public class GetAgreementCategories extends base {
 						
 					if (valueAssertions.equals("true")) {
 							// Note: this response is in Alphabetical Order by Description
-						Assert.assertEquals(agreementCategory1Id, js.getString("Result[0].Id"));
-						Assert.assertEquals(agreementCategory1Description, js.getString("Result[0].Description"));
-						Assert.assertEquals(agreementCategory2Id, js.getString("Result[1].Id"));
-						Assert.assertEquals(agreementCategory2Description, js.getString("Result[1].Description"));
+						Assert.assertEquals(agreementCategory1Id, js.getString("Result[1].Id"));
+						Assert.assertEquals(agreementCategory1Description, js.getString("Result[1].Description"));
+						Assert.assertEquals(agreementCategory2Id, js.getString("Result[0].Id"));
+						Assert.assertEquals(agreementCategory2Description, js.getString("Result[0].Description"));
 						Assert.assertEquals(agreementCategory3Id, js.getString("Result[2].Id"));
 						Assert.assertEquals(agreementCategory3Description, js.getString("Result[2].Description"));
 						Assert.assertEquals(agreementCategory4Id, js.getString("Result[3].Id"));

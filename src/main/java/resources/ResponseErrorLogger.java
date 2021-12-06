@@ -42,9 +42,9 @@ public class ResponseErrorLogger {
         var collect = ar.stream()
                 .map(d -> d.setTestThrowable(result.getThrowable()))
                 .collect(Collectors.toMap(TestData::getFullName, List::of, (BinaryOperator<List<TestData>>) ListUtils::union));
-//        if (result.getStatus() == ITestResult.FAILURE) {
+        if (result.getStatus() == ITestResult.FAILURE) {
             collect.forEach(this::saveErrorData);
-//        }
+        }
         collect.forEach((k, v) -> buildCSV(v, result.getStatus()));
         ar.clear();
     }
