@@ -303,16 +303,7 @@ public class GetFieldsForProspectCreationByEmployee extends base {
                 case "CategoryID":
                     assertion(map, "Membership Type", true, true, 0);
                     values = ((ArrayList<LinkedHashMap>) ((LinkedHashMap) linkmap).get("Values"));
-                    Assert.assertTrue(values.contains(valueMap(3, "Athletic")));
-                    Assert.assertTrue(values.contains(valueMap(4, "Tennis")));
-                    Assert.assertTrue(values.contains(valueMap(8, "Employee")));
-                    Assert.assertTrue(values.contains(valueMap(9, "Young Professional")));
-                    Assert.assertTrue(values.contains(valueMap(10, "Health Insurance")));
-                    Assert.assertTrue(values.contains(valueMap(12, "Outdoor Seasonal")));
-                    Assert.assertTrue(values.contains(valueMap(13, "Athletic Elite")));
-                    Assert.assertTrue(values.contains(valueMap(14, "Corporation")));
-                    Assert.assertTrue(values.contains(valueMap(15, "Corporate Member")));
-                    Assert.assertTrue(values.contains(valueMap(16, "S.W.E.A.T Member")));
+                    Assert.assertTrue(values.contains(valueMap(2, "Prospect")));
                     break;
                 case "PreferredPhone":
                     assertion(map, "Preferred Phone Number", false, false, 0);
