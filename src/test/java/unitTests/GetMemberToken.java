@@ -22,7 +22,7 @@ public class GetMemberToken extends base {
 	public void getData() {
 		base.getPropertyData();
 		RestAssured.useRelaxedHTTPSValidation();
-		RestAssured.baseURI = "https://compete-api-future.test-jfisoftware.com:8251";//prop.getProperty("baseURI");
+		RestAssured.baseURI = prop.getProperty("baseURI");
 		
 		aPIKey = prop.getProperty("X-Api-Key");
 		companyId = prop.getProperty("X-CompanyId");
@@ -33,14 +33,14 @@ public class GetMemberToken extends base {
 	 
 	public void getToken() {
 		
-		String barcodeId = "99959";// prop.getProperty("availableUserName");
+		String barcodeId = prop.getProperty("availableUserName");
 		String expirationTimeSpan = "00:00:01";
 
 		Response res =
 				
 			given()
 				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", "101")//.header("X-CompanyId", companyId)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
@@ -71,14 +71,14 @@ public class GetMemberToken extends base {
 		
 		// This test validates token returned is different from previous test
 		
-		String barcodeId = "99959";// prop.getProperty("availableUserName");
+		String barcodeId = prop.getProperty("availableUserName");
 		String expirationTimeSpan = "00:00:01";
 
 		Response res =
 				
 			given()
 				.header("X-Api-Key",aPIKey)
-				.header("X-CompanyId", "101")//.header("X-CompanyId", companyId)
+				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)
 				.header("Content-Type", "application/json")
 			.when()
