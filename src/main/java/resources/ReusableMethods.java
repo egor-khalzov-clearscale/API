@@ -10,7 +10,7 @@ import io.restassured.response.Response;
 import payloads.ChangeRequestPL;
 
 public class ReusableMethods extends base {
-	
+
 	public static int loopCount = 0;
 
 	public static XmlPath rawToXML(Response r) {
@@ -26,17 +26,21 @@ public class ReusableMethods extends base {
 			myWait(1000);
 		return x;
 	}
-	
+
+	public static void main(String[] args) {
+//		unenroll("236",250482,123762,227);
+	}
+
 	public static void unenroll(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
-		
+
 		if(loopCount<5) // Counting loops so test will fail it unenroll fails 5 times
 		{
 			myWait(5000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
-			
+
 			given()
 			.header("accept", prop.getProperty("accept"))
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -44,9 +48,9 @@ public class ReusableMethods extends base {
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 					.get("/api/v3/enrollmentcapability/deleteenrollment/"+companyId+"/"+enrollmentId+"")
-//					.then().log().body()
+					.then().log().body()
 					;
-	
+
 				myWait(5000);
 			given()
 			.header("accept", prop.getProperty("accept"))
@@ -55,9 +59,9 @@ public class ReusableMethods extends base {
 			.header("X-ClubId", prop.getProperty("X-Club1Id"))
 				.when()
 					.get("/api/v3/enrollmentcapability/deleteinvoice/"+companyId+"/"+invoiceId+"")
-//					.then().log().body()
+					.then().log().body()
 					;
-			
+
 				myWait(5000);
 			Response res =	given()
 				.header("accept", prop.getProperty("accept"))
@@ -66,11 +70,11 @@ public class ReusableMethods extends base {
 				.header("X-ClubId", prop.getProperty("X-Club1Id"))
 					.when()
 						.get("/api/v3/classcourse/getclassesandcoursesbymember/"+customerId+"/2020-01-01/2200-01-01")
-						.then()
+						.then().log().body()
 						.extract().response();
-			
+
 				JsonPath js = rawToJson(res);
-	
+
 					if(res.statusCode() != 404)	// Message: "Nothing found"
 					{
 						loopCount++;
@@ -85,7 +89,7 @@ public class ReusableMethods extends base {
 						System.out.println("-----------------");
 						unenroll(companyId, invoiceId, enrollmentId, customerId);
 					}
-			
+
 			}
 			else
 	 		{
@@ -102,17 +106,17 @@ public class ReusableMethods extends base {
 			loopCount = 0;
 //			return;
 	}
-	
+
 	public static void deleteEnrollment(String companyId, int enrollmentId, int customerId)
 	{
-		
+
 		if(loopCount<5)
 		{
 			myWait(2000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
-			
+
 			given()
 			.header("accept", "application/json")
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -124,10 +128,10 @@ public class ReusableMethods extends base {
 					.assertThat().statusCode(200)
 //					.log().body()
 					;
-	
+
 				myWait(5000);
 
-					if (isEnrolled(customerId) == true)
+					if (deleteIfEnrolled(customerId))
 					{
 						loopCount++;
 						System.out.println("[WARNING]----------------------------------------------");
@@ -138,7 +142,7 @@ public class ReusableMethods extends base {
 						System.out.println("[WARNING]----------------------------------------------");
 						deleteEnrollment(companyId, enrollmentId, customerId);
 					}
-			
+
 			}
 			else
 	 		{
@@ -154,17 +158,17 @@ public class ReusableMethods extends base {
 			loopCount = 0;
 //			return;
 	}
-	
+
 	public static void deleteInvoice(String companyId, int invoiceId, int enrollmentId, int customerId)
 	{
-		
+
 		if(loopCount<5)
 		{
 			myWait(2000);
 			base.getPropertyData();
 			RestAssured.useRelaxedHTTPSValidation();
 			RestAssured.baseURI = prop.getProperty("baseURI");
-			
+
 			given()
 			.header("accept", "application/json")
 			.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -176,10 +180,10 @@ public class ReusableMethods extends base {
 					.assertThat().statusCode(200)
 //					.log().body()
 					;
-			
+
 				myWait(5000);
 
-					if (isEnrolled(customerId) == true)
+					if (deleteIfEnrolled(customerId) == true)
 					{
 						loopCount++;
 						System.out.println("[WARNING]----------------------------------------------");
@@ -206,11 +210,11 @@ public class ReusableMethods extends base {
 			loopCount = 0;
 //			return;
 	}
-	
-	public static boolean isEnrolled(int customerId){
-		
+
+	public static boolean deleteIfEnrolled(int customerId){
+
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-		
+
 		Response res =	given()
 				.header("accept", prop.getProperty("accept"))
 				.header("X-Api-Key", prop.getProperty("X-Api-Key"))
@@ -222,13 +226,20 @@ public class ReusableMethods extends base {
 						.then()
 						.extract().response();
 
-		return res.statusCode() != 404;
+		if (res.statusCode() != 404){
+			JsonPath js = ReusableMethods.rawToJson(res);
+			unenroll(prop.getProperty("X-CompanyId"),
+					js.getInt("Result[0].InvoiceDetailId"),
+					js.getInt("Result[0].Id"),
+					js.getInt("Result[0].ForCustomerId"));
+		}
+		return false;//i'm to lazy to refactor
 	}
-	
+
 	public static boolean hasAppointment(String customerId)
 	{
 		String sDateTimeNoOffset = ReusableDates.getCurrentDate();
-			
+
 		Response res = 			given()
 //							.log().all()
 				.header("accept", prop.getProperty("accept"))
@@ -248,11 +259,11 @@ public class ReusableMethods extends base {
 						{
 							return false;
 						}
-		
+
 	}
-	
+
 	public static int getCustomerId(int companyId, int clubId, String userName, String password) {
-		
+
 		int customerId;
 
 		Response res = given()
@@ -270,12 +281,12 @@ public class ReusableMethods extends base {
 					.post("/api/v3/member/authenticatememberbyusercredentials").
 				then()
 				.body("Result.AuthenticationResult", equalTo("Success"))
-				.extract().response();	
-				
+				.extract().response();
+
 				JsonPath js = rawToJson(res);
-				
+
 				customerId = js.getInt("Result.CustomerId");
-				
+
 				return customerId;
 }
 
@@ -284,24 +295,24 @@ public class ReusableMethods extends base {
 		try {
 			Thread.sleep(duration);
 		} catch (InterruptedException e) {
-	
+
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static String getMethodName() {
-		
+
 		String methodName = new Object() {}
 		.getClass()
 		.getEnclosingMethod()
 		.getName();
-		
+
 		return methodName;
-		
+
 	}
-	
+
 	public static JsonPath getStoredAccountsResponse(String aPIKey, String companyId, String clubId, String customerId) {
-		
+
 		Response res =
 
 		given()
@@ -314,22 +325,22 @@ public class ReusableMethods extends base {
 		.then()
 //			.log().all() // Show entire response in console
 			.extract().response();
-		
+
 		JsonPath js = rawToJson(res);
-		
+
 		return js;
-		
+
 	}
 
 	public static void setLastUpdateDateToday(String aPIKey, String companyId, String clubId, String customerId) {
-		
+
 		String fieldName = "Address2";
 		String newValue = "Apt. B";
 		String familyMemberCustomerIds = "";
 		String submissionReasonDetail = "Test Submission Reason Details";
 		String submissionReason = prop.getProperty("submissionReason");
 		String signature = "null";
-		
+
 		// Change Request API is sent to set lastUpdateDate to today
 			given()
 		//		.log().all()

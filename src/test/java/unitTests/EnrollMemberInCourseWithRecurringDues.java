@@ -41,7 +41,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
         String courseId = prop.getProperty("recurringCoId");
         Boolean enrollCustomerAsStandby = true;
 
-        if (ReusableMethods.isEnrolled(customerId) == false) {
+        if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
             Response res = given()
 //						.log().all()
@@ -87,7 +87,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
         String courseId = prop.getProperty("freeCoId");
         Boolean enrollCustomerAsStandby = true;
 
-        if (ReusableMethods.isEnrolled(customerId) == false) {
+        if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
             Response res = given()
 //						.log().all()
@@ -132,7 +132,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
         String courseId = prop.getProperty("freeCoId");
         boolean enrollCustomerAsStandby = true;
 
-        if (!ReusableMethods.isEnrolled(customerId)) {
+        if (!ReusableMethods.deleteIfEnrolled(customerId)) {
 
             Response res = given()
 
@@ -177,7 +177,7 @@ public class EnrollMemberInCourseWithRecurringDues extends base {
         String courseId = prop.getProperty("standbyCoId");
         Boolean enrollCustomerAsStandby = true;
 
-        if (ReusableMethods.isEnrolled(customerId) == false) {
+        if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
             Response res = given()
 

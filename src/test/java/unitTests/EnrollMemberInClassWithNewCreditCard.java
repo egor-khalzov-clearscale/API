@@ -67,7 +67,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("alwaysAvailClOccurrence");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //					.log().all()
@@ -118,7 +118,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -158,7 +158,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -197,7 +197,7 @@ public class EnrollMemberInClassWithNewCreditCard extends base {
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")

@@ -165,7 +165,7 @@ public class CSIPayGateway extends base {
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()

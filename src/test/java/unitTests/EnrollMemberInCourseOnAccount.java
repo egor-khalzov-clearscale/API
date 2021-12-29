@@ -44,7 +44,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //				.log().all()
@@ -92,7 +92,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("notStartedCoPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -139,7 +139,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("standbyCoPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -186,7 +186,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -233,7 +233,7 @@ public class EnrollMemberInCourseOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("freeCoPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 

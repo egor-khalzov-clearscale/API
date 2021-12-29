@@ -43,7 +43,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				String courseId = prop.getProperty("punchCoId");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -89,7 +89,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				String courseId = prop.getProperty("notStartedCoId");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")
@@ -133,7 +133,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				String courseId = prop.getProperty("standbyCoId");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")
@@ -177,7 +177,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				String courseId = prop.getProperty("freeCoId");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -226,7 +226,7 @@ public class EnrollMemberInCourseWithPunchcard extends base {
 				String courseId = prop.getProperty("freeCoId");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()

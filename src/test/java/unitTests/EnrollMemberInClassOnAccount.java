@@ -47,7 +47,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("alwaysAvailClPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-			if (ReusableMethods.isEnrolled(customerId) == false) {
+			if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 			
 			Response res = given()
 //						.log().all()
@@ -95,7 +95,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("notStartedClPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res = given()
 //				.log().all()
@@ -144,7 +144,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("standbyClPrice");
 				boolean enrollCustomerAsStandby = true;
 				
-				if (!ReusableMethods.isEnrolled(customerId)) {
+				if (!ReusableMethods.deleteIfEnrolled(customerId)) {
 
 			Response res =	given()
 				.header("accept", "application/json")
@@ -189,7 +189,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				//	.log().all()
@@ -236,7 +236,7 @@ public class EnrollMemberInClassOnAccount extends base {
 				String displayedGrandTotal = prop.getProperty("freeClPrice");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -272,7 +272,7 @@ public class EnrollMemberInClassOnAccount extends base {
 					Assert.fail("failing test because isEnrolled() == true"); // failing test because isEnrolled() == true
 		}
 	}
-	
+
 	@Test (testName="No FOP - Account Problem",description="PBI:143588") // failed to create invoice because member's billing info not setup
 	public void noFOP_AccountProblem() {
 		

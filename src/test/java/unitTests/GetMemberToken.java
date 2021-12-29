@@ -61,8 +61,8 @@ public class GetMemberToken extends base {
 			Assert.assertEquals(String.valueOf(token.charAt(4)), "B");
 			Assert.assertEquals(String.valueOf(token.charAt(5)), "4");
 			Assert.assertEquals(String.valueOf(token.charAt(13)), "@");
-			
-			Assert.assertTrue(token.length() == 14);
+
+		Assert.assertEquals( 14,token.length());
 			
 	}
 	

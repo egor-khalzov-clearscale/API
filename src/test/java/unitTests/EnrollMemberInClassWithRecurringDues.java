@@ -44,7 +44,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				String classOccurrence = prop.getProperty("recurringClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 		
 			Response res =	given()
 //						.log().all()
@@ -91,7 +91,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -137,7 +137,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -183,7 +183,7 @@ public class EnrollMemberInClassWithRecurringDues extends base {
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()

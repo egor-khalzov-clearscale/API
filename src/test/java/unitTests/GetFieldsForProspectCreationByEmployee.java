@@ -26,7 +26,7 @@ public class GetFieldsForProspectCreationByEmployee extends base {
         Assert.assertEquals(map.get("Description").toString(), data, "Description should be");
         Assert.assertEquals(map.get("DisplayValue").toString(), data, "DisplayValue should be");
         Assert.assertEquals(map.get("ValueMustBeInDefinedList").toString(),
-                valueMustBeInDefinedList.toString());
+                valueMustBeInDefinedList.toString(),"ValueMustBeInDefinedList should be");
         Assert.assertEquals(map.get("Required").toString(), required.toString(), "Should be required=" + required);
         Assert.assertEquals(map.get("MaximumLength").toString(), length.toString(), "Length should be " + length);
         Assert.assertEquals(map.get("DataType").toString(), "string");

@@ -45,7 +45,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classOccurrence = prop.getProperty("punchClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //						.log().all()
@@ -92,7 +92,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classOccurrence = prop.getProperty("notStartedClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 			
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //					.log().all()
@@ -139,7 +139,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classOccurrence = prop.getProperty("standbyClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")
@@ -185,7 +185,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")
@@ -234,7 +234,7 @@ public class EnrollMemberInClassWithPunchcard extends base {
 				String classOccurrence = prop.getProperty("freeClOccurrence");
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")

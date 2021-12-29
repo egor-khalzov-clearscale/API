@@ -45,7 +45,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				int accountId					= 1;
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 //				.log().all()
@@ -95,7 +95,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				int accountId = 1;
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -136,7 +136,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				int accountId = 1;
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 
@@ -177,7 +177,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				int accountId = 1;
 				Boolean enrollCustomerAsStandby = true;
 				
-				if (ReusableMethods.isEnrolled(customerId) == false) {
+				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
 				.header("accept", "application/json")
