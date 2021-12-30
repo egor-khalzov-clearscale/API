@@ -42,7 +42,7 @@ public class EnrollMemberInCourseWithCardOnFile extends base {
 				int customerId = Integer.parseInt(c);
 				String courseId = prop.getProperty("alwaysAvailCoId");
 				String displayedGrandTotal = prop.getProperty("alwaysAvailCoPrice");
-				int accountId					= 1;
+				int accountId					= 11;
 				Boolean enrollCustomerAsStandby = true;
 				
 				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {

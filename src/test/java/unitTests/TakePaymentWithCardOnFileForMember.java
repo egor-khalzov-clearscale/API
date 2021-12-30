@@ -43,7 +43,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 		clubId = prop.getProperty("X-Club1Id");
 		
 		customerId = prop.getProperty("takePayId");
-		accountId = "2";
+		accountId = "4";
 		employeeBarcodeId = prop.getProperty("activeEmployeeBarcodeId");
 		effectiveDate = ReusableDates.getCurrentDatePlusOneDay();
 		amount = "1.01";
@@ -60,7 +60,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 		String accountId = "11";
 
 			given()
-				.log().all()
+//				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -71,7 +71,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 				.post("api/v3/financial/takepaymentwithcreditcardonfileformember")
 			.then()
 				.assertThat()
-				.log().all()
+//				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -105,7 +105,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	@Test (testName="Multiple Cards On File",description="PBI:150192")
 	public void multipleCardsOnFile() {
 		
-				String accountId = "3";				
+				String accountId = "5";				
 
 			given()
 //				.log().all()
@@ -130,7 +130,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	public void memberInCollections() {
 		
 				String customerId = prop.getProperty("collectionsId");
-				String accountId = "1";
+				String accountId = "2";
 
 			given()
 //				.log().all()
@@ -155,7 +155,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	public void frozenMember() {
 		
 				String customerId = prop.getProperty("frozenId");
-				String accountId = "1";
+				String accountId = "2";
 
 			given()
 //				.log().all()
@@ -204,7 +204,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	public void draftLimitExceeded() {
 
 				String customerId = prop.getProperty("ccLimitId");
-				String accountId = "1";
+				String accountId = "2";
 				String amount = "1.50";
 
 			given()
@@ -276,7 +276,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 	public void creditCardExpired() {
 
 				String customerId = prop.getProperty("expiredCCId");
-				String accountId = "1";
+				String accountId = "2";
 
 			given()
 //				.log().all()
