@@ -49,7 +49,7 @@ public class ModifyCardOnFileByMember extends base {
         companyId = prop.getProperty("X-CompanyId");
         clubId = prop.getProperty("X-Club1Id");
 
-        accountId = "2";
+        accountId = "8";
         customerId = prop.getProperty("changeFOPId");
 
         addressIsSameAsMemberAddress = "false";
@@ -122,18 +122,18 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertEquals(js.getString("Result[0].AccountId"), accountId);
-        Assert.assertTrue(cardNumber.contains(js.getString("Result[0].TruncatedAccountNumber")));
-        Assert.assertTrue(js.getString("Result[0].ExpirationDate").contains(expirationMonth));
-        Assert.assertTrue(js.getString("Result[0].ExpirationDate").contains(expirationYear));
-        Assert.assertEquals(js.getString("Result[0].NameOnCard"), cardHolderName);
-        Assert.assertEquals(js.getString("Result[0].Address.AddressLine1"), addressLine1);
-        Assert.assertEquals(js.getString("Result[0].Address.AddressLine2"), addressLine2);
-        Assert.assertEquals(js.getString("Result[0].Address.City"), city);
-        Assert.assertEquals(js.getString("Result[0].Address.PostalCode"), postalCode);
-        Assert.assertEquals(js.getString("Result[0].Address.StateProvince"), stateProvince);
-        Assert.assertEquals(js.getString("Result[0].CardType"), cardType);
-        Assert.assertEquals(js.getString("Result[0].IsHouseAccount"), setAsHouseAccount);
+        assertContains(js.getString("Result.AccountId"), accountId);
+        assertContains(js.getString("Result.TruncatedAccountNumber"), cardNumber.substring(cardNumber.length() - 4));
+        assertContains(js.getString("Result.ExpirationDate"), (expirationMonth));
+        assertContains(js.getString("Result.ExpirationDate"), (expirationYear));
+        assertContains(js.getString("Result.NameOnCard"), cardHolderName);
+        assertContains(js.getString("Result.Address.AddressLine1"), addressLine1);
+        assertContains(js.getString("Result.Address.AddressLine2"), addressLine2);
+        assertContains(js.getString("Result.Address.City"), city);
+        assertContains(js.getString("Result.Address.PostalCode"), postalCode);
+        assertContains(js.getString("Result.Address.StateProvince"), stateProvince);
+        assertContains(js.getString("Result.CardType"), cardType);
+        assertContains(js.getString("Result.IsHouseAccount"), setAsHouseAccount);
     }
 
     @Test(testName = "Address Is Same As Member Address", description = "PBI:164154")
@@ -165,11 +165,11 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertFalse(js.getString("Result[0].Address.AddressLine1").equals(addressLine1));
-        Assert.assertFalse(js.getString("Result[0].Address.AddressLine2").equals(addressLine2));
-        Assert.assertFalse(js.getString("Result[0].Address.City").equals(city));
-        Assert.assertFalse(js.getString("Result[0].Address.PostalCode").equals(postalCode));
-        Assert.assertFalse(js.getString("Result[0].Address.StateProvince").equals(stateProvince));
+        Assert.assertNotEquals(addressLine1, js.getString("Result[0].Address.AddressLine1"));
+        Assert.assertNotEquals(addressLine2, js.getString("Result[0].Address.AddressLine2"));
+        Assert.assertNotEquals(city, js.getString("Result[0].Address.City"));
+        Assert.assertNotEquals(postalCode, js.getString("Result[0].Address.PostalCode"));
+        Assert.assertNotEquals(stateProvince, js.getString("Result[0].Address.StateProvince"));
     }
 
     @Test(testName = "Set Card 1 As House Account", description = "PBI:164154", priority = 1, enabled = true)
@@ -188,7 +188,7 @@ public class ModifyCardOnFileByMember extends base {
                 .when()
                 .body("{\r\n" +
                         "  \"CustomerId\": " + customerId + ",\r\n" +
-                        "  \"AccountId\": " + accountId + ",\r\n" +
+                        "  \"AccountId\": " + 2 + ",\r\n" +
                         "  \"SetAsHouseAccount\": " + setAsHouseAccount + "\r\n" +
                         "}")
                 .post("/api/v3/member/modifycardonfilebymember")
@@ -230,7 +230,7 @@ public class ModifyCardOnFileByMember extends base {
 
         Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
         JsonPath js = ReusableMethods.rawToJson(res);
-        Assert.assertEquals(js.getBoolean("Result[0].IsHouseAccount"), false);
+        Assert.assertFalse(js.getBoolean("Result[0].IsHouseAccount"));
         Assert.assertEquals(js.getString("Result[1].IsHouseAccount"), setAsHouseAccount);
     }
 
@@ -250,7 +250,7 @@ public class ModifyCardOnFileByMember extends base {
                 .when()
                 .body("{\r\n" +
                         "  \"CustomerId\": " + customerId + ",\r\n" +
-                        "  \"AccountId\": " + accountId + ",\r\n" +
+                        "  \"AccountId\": " + 2 + ",\r\n" +
                         "  \"UseInPos\": " + useInPos + "\r\n" +
                         "}")
                 .post("/api/v3/member/modifycardonfilebymember")
@@ -279,7 +279,7 @@ public class ModifyCardOnFileByMember extends base {
                 .when()
                 .body("{\r\n" +
                         "  \"CustomerId\": " + customerId + ",\r\n" +
-                        "  \"AccountId\": " + accountId + ",\r\n" +
+                        "  \"AccountId\": " + 2 + ",\r\n" +
                         "  \"UseInPos\": " + useInPos + "\r\n" +
                         "}")
                 .post("/api/v3/member/modifycardonfilebymember")
@@ -487,7 +487,7 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertTrue(cardNumber.contains(js.getString("Result[0].TruncatedAccountNumber")));
+        assertContains(js.getString("Result.TruncatedAccountNumber"), cardNumber.substring(cardNumber.length() - 4));
     }
 
     @Test(testName = "Modify Address Line 1", description = "PBI:164154")
@@ -522,7 +522,12 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertEquals(js.getString("Result[0].Address.AddressLine1"), addressLine1);
+        assertContains(js.getString("Result.Address.AddressLine1"), addressLine1);
+    }
+
+    private void assertContains(String js, String testValue) {
+        Assert.assertTrue(js.contains(testValue),
+                "Should contain " + testValue + " in " + js);
     }
 
     @Test(testName = "Modify Address Line 2", description = "PBI:164154")
@@ -557,7 +562,7 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertEquals(js.getString("Result[0].Address.AddressLine2"), addressLine2);
+        assertContains(js.getString("Result.Address.AddressLine2"), addressLine2);
     }
 
     @Test(testName = "Modify City", description = "PBI:164154")
@@ -592,7 +597,7 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertEquals(js.getString("Result[0].Address.City"), city);
+        assertContains(js.getString("Result.Address.City"), city);
     }
 
     @Test(testName = "Modify StateProvince", description = "PBI:164154")
@@ -627,16 +632,16 @@ public class ModifyCardOnFileByMember extends base {
 
         JsonPath js = ReusableMethods.rawToJson(res);
 
-        Assert.assertEquals(js.getString("Result[0].Address.StateProvince"), stateProvince);
+        assertContains(js.getString("Result.Address.StateProvince"), stateProvince);
     }
 
-    @Test(testName = "No Change To Existing Address Line 1", description = "PBI:164154", priority = Integer.MIN_VALUE)
+    @Test(testName = "No Change To Existing Address Line 1", description = "PBI:164154")
     public void noChangeToExistingAddressLine1() {
 
         Response res = resources.myGets.getCardsOnFileByMember(aPIKey, companyId, clubId, customerId);
         JsonPath js = ReusableMethods.rawToJson(res);
         String addressIsSameAsMemberAddress = "false";
-        String addressLine1 = js.getString("Result[0].Address.AddressLine1");
+        String addressLine1 = js.getString("Result[1].Address.AddressLine1");
 
         Response res2 =
 
