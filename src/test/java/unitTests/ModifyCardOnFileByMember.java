@@ -642,7 +642,7 @@ public class ModifyCardOnFileByMember extends base {
         JsonPath js = ReusableMethods.rawToJson(res);
         String addressIsSameAsMemberAddress = "false";
         String addressLine1 = js.getString("Result[1].Address.AddressLine1");
-
+        String accountId = "8";
         Response res2 =
 
                 given()
