@@ -15,7 +15,7 @@ public class PurchasePackageWithCardOnFile extends base{
 	static String companyId;
 	static String clubId;
 
-	int accountId = 1;
+	int accountId = 2;
 
 	@BeforeClass
 	public void getData() {
@@ -50,7 +50,7 @@ public class PurchasePackageWithCardOnFile extends base{
 				.body(PackagePL.PurchasePackageWithCardOnFile(customerId, itemId, quantity, displayedGrandTotal, accountId))
 				.post("/api/v3/package/purchasepackagewithcardonfile")
 			.then()
-//				.log().all()
+				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))

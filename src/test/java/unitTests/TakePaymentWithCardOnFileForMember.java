@@ -57,10 +57,10 @@ public class TakePaymentWithCardOnFileForMember extends base {
 		
 		String customerId = "248"; // changing member Available Auto to lower balance that was raised by other tests
 		String amount = "5.00";
-		String accountId = "1";
+		String accountId = "11";
 
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -71,7 +71,7 @@ public class TakePaymentWithCardOnFileForMember extends base {
 				.post("api/v3/financial/takepaymentwithcreditcardonfileformember")
 			.then()
 				.assertThat()
-//				.log().all()
+				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))

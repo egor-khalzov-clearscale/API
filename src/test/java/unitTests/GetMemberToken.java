@@ -39,6 +39,7 @@ public class GetMemberToken extends base {
 		Response res =
 				
 			given()
+//				.log().all()
 				.header("X-Api-Key",aPIKey)
 				.header("X-CompanyId", companyId)
 				.header("X-ClubId", clubId)

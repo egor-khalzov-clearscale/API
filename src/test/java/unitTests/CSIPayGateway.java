@@ -87,11 +87,9 @@ public class CSIPayGateway extends base {
 	public void cSIResponseApproved() {
 		
 			Double amount = 6.50;
-			//String companyId = "101";
-			//cardNumber = "4111111111111111";
 
 			given()
-//				.log().all()
+				.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -102,7 +100,7 @@ public class CSIPayGateway extends base {
 				.post("/api/v3/financial/takepaymentwithnewcreditcardformember")
 			.then()
 				.assertThat()
-//				.log().all()
+				.log().all()
 				.statusCode(200)
 				.time(lessThan(60L),TimeUnit.SECONDS)
 				.body("Status", equalTo(200))
@@ -168,7 +166,7 @@ public class CSIPayGateway extends base {
 				if (ReusableMethods.deleteIfEnrolled(customerId) == false) {
 
 			Response res =	given()
-//						.log().all()
+						.log().all()
 				.header("accept", "application/json")
 				.header("X-Api-Key", aPIKey)
 				.header("X-CompanyId", companyId)
@@ -178,7 +176,7 @@ public class CSIPayGateway extends base {
 					.body(ClassCoursePL.EnrollMemberInCourseWithNewCreditCard(customerId,courseId,displayedGrandTotal,cardNumber,nameOnCard,month,year,securityCode,addressLine1,city,state,postalCode,enrollCustomerAsStandby,onlineEnrollment))
 						.post("/api/v3/classcourse/enrollmemberincoursewithnewcreditcard")
 						.then()
-//						.log().body()
+						.log().body()
 						.assertThat().statusCode(200)
 						.body("Result.Enrolled", equalTo(true))
 						.body("Result.EnrollmentStatus", equalTo("Enrolled"))
