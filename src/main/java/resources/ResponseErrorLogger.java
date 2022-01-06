@@ -5,9 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
-import org.apache.commons.collections.ListUtils;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import utilities.ResponseTimeFilter;
 
@@ -16,15 +14,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.function.BinaryOperator;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class ResponseErrorLogger {
 
-    static ArrayList<TestData> ar = new ArrayList<>();
+    //    static ArrayList<TestData> ar = new ArrayList<>();
+    static Map<String, ArrayList<TestData>> testMap = new HashMap<>();
     static CSVWriter outputCsv;
 
     static {
@@ -33,20 +28,30 @@ public class ResponseErrorLogger {
 
     public static void setResponse(String s, String testName, ResponseTimeFilter.HttpRequestAttachment requestSpecification, Response response) {
         String[] classPath = s.split("\\.");
-        ar.add(new TestData(classPath[0], classPath[1], testName, requestSpecification, response));
+        TestData testData = new TestData(classPath[0], classPath[1], testName, requestSpecification, response);
+//        ar.add(testData);
+        String key = classPath[1] + "/" + testName;
+       testMap.putIfAbsent(key, new ArrayList<>());
+       testMap.get(key).add(testData);
     }
 
 
-    @AfterMethod
-    public void tearDown(ITestResult result) {
-        var collect = ar.stream()
-                .map(d -> d.setTestThrowable(result.getThrowable()))
-                .collect(Collectors.toMap(TestData::getFullName, List::of, (BinaryOperator<List<TestData>>) ListUtils::union));
-        if (result.getStatus() == ITestResult.FAILURE) {
-            collect.forEach(this::saveErrorData);
+    @AfterClass
+    public void tearDown() {
+        for (String test : testMap.keySet()) {
+            var ar = testMap.get(test);
+            List<TestData> trimFirstCall = ar.subList(1, ar.size() - 1);
+            LongSummaryStatistics stat = trimFirstCall.stream()
+                    .map(data -> data.getResponse().getTime()).mapToLong(l -> l).summaryStatistics();
+            buildPerformanceCSV(ar.get(0), stat);
         }
-        collect.forEach((k, v) -> buildCSV(v, result.getStatus()));
-        ar.clear();
+        testMap.clear();
+    }
+
+    private void buildPerformanceCSV(TestData data, LongSummaryStatistics statistics) {
+        if (outputCsv == null) initFileWriter();
+        String[] dataToCsv = {"SUCCESS", data.packageName, data.className, data.testName, String.valueOf(statistics.getAverage())};
+        outputCsv.writeNext(dataToCsv);
     }
 
     @AfterTest
@@ -80,6 +85,7 @@ public class ResponseErrorLogger {
         } else data.error = getErrorReasonXml(ReusableMethods.rawToXML(data.response));
         System.out.println("Test " + data.getFullName() + " has an error:\n" + data.error);
     }
+
     private String getErrorReasonJson(JsonPath json) {
         var errorMsg = json.getString("Message");
         if (errorMsg == null) return "unsorted";
